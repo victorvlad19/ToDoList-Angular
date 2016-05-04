@@ -1,0 +1,13 @@
+button .material-icons {
+    margin-top: 7px;
+}
+
+.md-toolbar .md-theme-teal, .md-sidenav-left .nav-theme {
+    background-color: #34495e;
+}
+
+.md-hue-1{
+    color: rgb(230, 230, 230);
+    background-color: rgb(230, 230, 230);
+}
+

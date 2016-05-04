@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Magazin de vise</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
+        <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.css" type="text/css" media="all">
+    </head>
+     
+    <body ng-app="ngFClass" ng-controller="FClassCtrl">
+<md-toolbar>
+        <div class="md-toolbar-tools">
+            <p><strong>Magazin de vise</strong></p>
+            <md-button ng-click="openSidebar()">
+                <md-icon class="mdi mdi-plus-circle"></md-icon>
+                adauga
+            </md-button>
+            <md-button ng-click="showFilters = true">
+					<md-icon class="mdi mdi-magnify"></md-icon>
+                cauta
+            </md-button>
+        </div>
+     </md-toolbar>
+
+     <div class="filters" layout="row" layout-align="center center" ng-if="showFilters">
+     
+        <md-input-container class="md-block">
+          <input ng-model="CSearch" placeholder="Ce vrei sa cauti azi ?">
+        </md-input-container>
+    
+    <div layout="row">
+        <md-button ng-click="showFilters = false">
+           Inchide
+        </md-button>
+    </div>
+     </div>
+     <md-sidenav class="md-sidenav-left md-whiteframe-z4" md-component-id="left">
+        <md-toolbar>
+            <h1 class="md-toolbar-tools"> Adauga un vis nou</h1>
+        </md-toolbar>
+        <md-content layout-padding> 
+            <form>
+          <md-input-container class="md-block">
+            <label for="testInput">Numele visului</label>
+            <input type="text" id="testInput" ng-model="user.nume" md-autofocus="">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label for="testInput1">Pretul visului (in $)</label>
+            <input type="text" id="testInput1" ng-model="user.pret" >
+          </md-input-container>
+          <md-input-container class="md-block">
+          <label>Descrierea visului</label>
+          <textarea ng-model="user.desc" rows="5" md-select-on-focus=""></textarea>
+        </md-input-container>
+        <md-input-container md-no-float="" class="md-block">
+          <input ng-model="user.img" placeholder="Link Imagaine">
+        </md-input-container>
+        <!--Butoanele-->
+            <md-button  ng-click="closeSidebar()" class="md-raised md-warn ">Inchide</md-button>
+            <md-button class="md-raised md-primary" ng-if="!editing" ng-click="saveUser(user)">Salveaza</md-button>
+            <md-button class="md-raised md-primary" ng-click="saveEdit()" ng-if="editing" ng-click="">Salveaza Editarea
+             </md-button>
+        </form>
+
+        </form>
+        <!--<pre>-->
+            <!--{{ user | json }}-->
+        <!--</pre>-->
+        
+        </md-content>
+     </md-sidenav>
+    
+    <md-content class="md-padding" layout="row" layout-wrap>
+        
+        <md-card ng-repeat="item in items | filter: CSearch" flex="29">
+            <img ng-src="{{ item.img }}" alt=""/>
+            <md-toolbar class="md-hue-2">
+                        <md-button class="md-button" aria-label="More"
+                        ng-click="showPopover(this)">
+                        <h3 class="md-title center md-raised">
+                        <!--<md-icon class="mdi mdi-menu"></md-icon>-->
+                        {{ item.nume }}
+                        </h3>
+                        </md-button>
+                        <md-button ng-show="popover" ng-click="editItem(item); showPopover(this)" class="md-raised md-primary">Editeaza</md-button>
+                        <md-button ng-show="popover" ng-click="deleteItem(item)" class="md-raised md-warn">Sterge</md-button>
+                        <!--<span flex></span>-->
+            </md-toolbar>
+            <md-card-content>
+                <div class="info">
+                    <h3>{{ item.pret | currency }}</h3>
+                    <p>{{ item.desc }}</p>
+                    <!--<md-button ng-click="showContent = true"-->
+                    <!--ng-show="!showContent" class="md-raised md-primary">Mai mult</md-button>-->
+                    <!--<md-button ng-click="showContent = false"ng-show="showContent">Mai putin</md-button>-->
+                    <!--<p ng-show="showContent">{{ item.desc }}</p>-->
+                </div>
+            </md-card-content>
+            <span flex></span>
+        </md-card>
+    </md-content>
+    
+
+    <!--Scipturi-->
+    <script src="/node_modules/angular/angular.js"></script> 
+	<script src="/node_modules/angular-aria/angular-aria.js"></script> 
+	<script src="/node_modules/angular-animate/angular-animate.js"></script> 
+	<script src="/node_modules/angular-material/angular-material.js"></script>
+    <script src="script/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="component/FClass.ctr.js" type="text/javascript"   charset="utf-8"></script>
+    </body>
+</html>

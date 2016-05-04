@@ -1,0 +1,1 @@
+angular.module("ngFClass",["ngMaterial"]).config(function(e){e.theme("default").primaryPalette("indigo").accentPalette("orange")}).directive("helloWord",function(){return{template:"<h1>Hello, wordl! </h1>"}});
